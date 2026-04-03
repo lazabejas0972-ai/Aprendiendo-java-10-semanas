@@ -14,13 +14,11 @@ public class Tarea {
         this.estado = "PENDIENTE";
     }
 
-    // GETTERS
     public int getId() { return id; }
     public String getTitulo() { return titulo; }
     public String getDescripcion() { return descripcion; }
     public String getEstado() { return estado; }
 
-    // SETTERS
     public void setTitulo(String titulo) {
         if (titulo != null && !titulo.trim().isEmpty()) {
             this.titulo = titulo;
@@ -37,7 +35,6 @@ public class Tarea {
         }
     }
 
-    // MÉTODOS
     public void completar() {
         if (estado.equals("COMPLETADA")) {
             System.out.println("La tarea ya esta completada");
