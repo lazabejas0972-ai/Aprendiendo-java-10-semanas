@@ -1,5 +1,5 @@
-import java.util.InputMismatchException;
 import java.util.Scanner;
+import java.util.InputMismatchException;
 
 public class Main {
     static Scanner sc = new Scanner(System.in);
@@ -137,26 +137,24 @@ public class Main {
     }
 
     public static int leerEntero(String mensaje) {
-        while (true) {
-            try {
-                System.out.print(mensaje);
-                return sc.nextInt();
-            } catch (InputMismatchException e) {
-                System.out.println("Ingrese numero valido.");
-                sc.nextLine();
-            }
+    while (true) {
+        try {
+            System.out.print(mensaje);
+            return Integer.parseInt(sc.nextLine());
+        } catch (Exception e) {
+            System.out.println("Ingrese numero valido.");
         }
+    }
     }
 
     public static double leerDouble(String mensaje) {
-        while (true) {
-            try {
-                System.out.print(mensaje);
-                return sc.nextDouble();
-            } catch (InputMismatchException e) {
-                System.out.println("Ingrese numero valido.");
-                sc.nextLine();
-            }
+    while (true) {
+        try {
+            System.out.print(mensaje);
+            return Double.parseDouble(sc.nextLine());
+        } catch (Exception e) {
+            System.out.println("Ingrese numero valido.");
         }
+    }
     }
 }
