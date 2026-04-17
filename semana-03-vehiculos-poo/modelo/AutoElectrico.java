@@ -1,4 +1,4 @@
-package semana-03-vehiculos-poo.modelo;
+package modelo;
 
 public class AutoElectrico extends Auto implements Electrico {
     private int nivelBateria;

@@ -1,13 +1,13 @@
-import modelo.*;
-import servicio.*;
 import java.util.ArrayList;
 import java.util.Scanner;
+import modelo.*;
+import servicio.*;
 
 public class Main {
 
     public static void main(String[] args) {
 
-        Scanner sc = new Scanner(System.in);
+        Scanner in = new Scanner(System.in);
         GestorVehiculos gestor = new GestorVehiculos();
 
         ArrayList<Vehiculo> flota = new ArrayList<>();
@@ -37,82 +37,79 @@ public class Main {
             System.out.println("8. Salir");
             System.out.print("Opcion: ");
 
-            opcion = sc.nextInt();
-            sc.nextLine();
+            opcion = in.nextInt();
+            in.nextLine();
 
             switch (opcion) {
 
                 case 1:
                     System.out.println("1.Auto 2.Moto 3.Camion 4.AutoElectrico 5.MotoElectrica");
-                    int tipo = sc.nextInt();
-                    sc.nextLine();
+                    int tipo = in.nextInt();
+                    in.nextLine();
 
                     System.out.print("Marca: ");
-                    String marca = sc.nextLine();
+                    String marca = in.nextLine();
 
                     System.out.print("Modelo: ");
-                    String modelo = sc.nextLine();
+                    String modelo = in.nextLine();
 
                     System.out.print("Año: ");
-                    int anio = sc.nextInt();
+                    int anio = in.nextInt();
+                    in.nextLine();
 
                     if (tipo == 1) {
                         System.out.print("Puertas: ");
-                        int puertas = sc.nextInt();
+                        int puertas = in.nextInt();
+                        in.nextLine();
                         gestor.agregar(new Auto(marca, modelo, anio, puertas));
                     } else if (tipo == 2) {
                         gestor.agregar(new Moto(marca, modelo, anio, false));
                     } else if (tipo == 3) {
                         System.out.print("Toneladas: ");
-                        double ton = sc.nextDouble();
+                        double ton = in.nextDouble();
+                        in.nextLine();
                         gestor.agregar(new Camion(marca, modelo, anio, ton));
                     } else if (tipo == 4) {
                         System.out.print("Puertas: ");
-                        int puertas = sc.nextInt();
+                        int puertas = in.nextInt();
+                        in.nextLine();
                         System.out.print("Bateria: ");
-                        int bat = sc.nextInt();
+                        int bat = in.nextInt();
+                        in.nextLine();
                         gestor.agregar(new AutoElectrico(marca, modelo, anio, puertas, bat));
                     } else if (tipo == 5) {
                         System.out.print("Bateria: ");
-                        int bat = sc.nextInt();
+                        int bat = in.nextInt();
+                        in.nextLine();
                         gestor.agregar(new MotoElectrica(marca, modelo, anio, bat));
                     }
                     break;
-
                 case 2:
-                    gestor.listarTodos();
+                    gestor.ListarTodos();
                     break;
-
                 case 3:
                     System.out.print("Tipo (auto/moto/camion/electrico): ");
-                    String tipoFiltro = sc.nextLine();
+                    String tipoFiltro = in.nextLine();
                     gestor.listarPorTipo(tipoFiltro);
                     break;
-
                 case 4:
                     gestor.listarElectricos();
                     break;
-
                 case 5:
                     gestor.cargarElectricosNecesarios();
                     break;
-
                 case 6:
                     gestor.demostrarPolimorfismo();
                     break;
-
                 case 7:
                     gestor.mostrarEstadisticas();
                     break;
-
                 case 8:
                     System.out.println("Saliendo...");
                     break;
-
                 default:
                     System.out.println("Opcion invalida");
             }
-
         } while (opcion != 8);
     }
 }

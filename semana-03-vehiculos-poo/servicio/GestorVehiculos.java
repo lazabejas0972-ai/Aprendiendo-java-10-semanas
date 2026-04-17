@@ -1,6 +1,6 @@
 package servicio;
-import modelo.*;
 import java.util.ArrayList;
+import modelo.*;
 
 public class GestorVehiculos {
     private ArrayList<Vehiculo> vehiculos;
@@ -11,7 +11,7 @@ public class GestorVehiculos {
 
     public void agregar(Vehiculo v){
         vehiculos.add(v);
-        System.out.println9("Agregado: "+v.getInfo());
+        System.out.println("Agregado: "+v.getInfo());
     }
 
     public void ListarTodos(){

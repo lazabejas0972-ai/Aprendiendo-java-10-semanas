@@ -1,4 +1,4 @@
-package semana-03-vehiculos-poo.modelo;
+package modelo;
 
 public abstract class Vehiculo {
     protected String marca;
