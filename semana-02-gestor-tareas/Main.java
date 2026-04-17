@@ -1,17 +1,19 @@
-import java.security.AlgorithmParameterGenerator;
-import servicio.GestorTareas;
 import java.util.Scanner;
+import servicio.GestorTareas;
 
 public class Main {
 
-        GestorTareas gestor = new GestorTareas();
-        Scanner sc = new Scanner(System.in);
+    static GestorTareas gestor = new GestorTareas();
+    static Scanner sc = new Scanner(System.in);
+
+    public static void main(String[] args) {
+
         int opcion;
 
         do {
             mostrarMenu();
-            opcion=sc.nextInt();
-            sc.nextLine(); 
+            opcion = sc.nextInt();
+            sc.nextLine();
 
             switch (opcion) {
                 case 1: agregar(); break;
@@ -40,7 +42,7 @@ public class Main {
         System.out.print("Seleccione una opción: ");
     }
 
-    static void agregar(){
+    static void agregar() {
         System.out.print("Titulo: ");
         String titulo = sc.nextLine();
         System.out.print("Descripcion: ");
@@ -48,28 +50,29 @@ public class Main {
         gestor.agregar(titulo, descripcion);
     }
 
-    static void completar(){
+    static void completar() {
         System.out.print("ID de la tarea a completar: ");
         int id = sc.nextInt();
         gestor.completar(id);
     }
 
-    static void eliminar(){
+    static void eliminar() {
         System.out.print("ID de la tarea a eliminar: ");
         int id = sc.nextInt();
         gestor.eliminar(id);
     }
 
-    static void estadisticas(){
+    static void estadisticas() {
         int total = gestor.totalTareas();
         int completadas = gestor.tareasCompletadas();
         int pendientes = gestor.tareasPendientes();
+
         System.out.println("=== Estadísticas ===");
         System.out.println("Total de tareas: " + total);
         System.out.println("Tareas completadas: " + completadas);
         System.out.println("Tareas pendientes: " + pendientes);
 
-        if(total>0){
+        if (total > 0) {
             double porcentaje = (completadas * 100.0) / total;
             System.out.printf("Porcentaje completadas: %.2f%%\n", porcentaje);
         }
