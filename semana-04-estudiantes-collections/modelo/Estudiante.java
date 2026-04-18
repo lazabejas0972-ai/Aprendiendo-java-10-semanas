@@ -1,5 +1,4 @@
 package modelo;
-
 public class Estudiante implements Comparable<Estudiante>{
 
     private String carnet;
