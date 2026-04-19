@@ -1,9 +1,9 @@
 package servicio;
 
-import modelo.Estudiante;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.TreeSet;
-import java.util.ArrayList;
+import modelo.Estudiante;
 
 public class GestorEstudiantes {
 
@@ -50,5 +50,22 @@ public class GestorEstudiantes {
         ranking.remove(e);
         historial.add("ELIMINAR: " + carnet + " - " + e.getNombre());
         return true;
+    }
+
+    public void mostrarRanking(){
+        System.out.println("\n=== RANKING DE ESTUDIANTES ===");
+        int pos = 1;
+        for (Estudiante e : ranking) {
+            System.out.printf("%3d. %s%n", pos++, e);
+        }
+    }
+
+    public void mostrarTop5(){
+        System.out.println("\n=== TOP 5 ESTUDIANTES ===");
+        int count = 0;
+        Estudiante[] arr = ranking.toArray(new Estudiante[0]);
+        for (int i = arr.length - 1; i >= 0 && count < 5; i--) {
+            System.out.printf("%d. %s%n", ++count, arr[i]);
+        }
     }
 }
