@@ -68,4 +68,45 @@ public class GestorEstudiantes {
             System.out.printf("%d. %s%n", ++count, arr[i]);
         }
     }
+
+    public void filtrarPorCarrera(String carrera){
+        System.out.println("\n=== Carrera: "+ carrera + " ===");
+        boolean hayAlguno = false;
+        for(Estudiante e : porCarnet.values()){
+            if(e.getCarrera().equalsIgnoreCase(carrera)){
+                System.out.println(e);
+                hayAlguno = true;
+            }
+        }
+        if(!hayAlguno){
+            System.out.println("No hay estudiantes registrados en esta carrera.");
+        }
+    }
+
+    public void mostrarEstadisticas(){
+        if(ranking.isEmpty()){
+            System.out.println("No hay estudiantes registrados para mostrar estadísticas.");
+            return;
+        }
+        double suma = 0;
+        for(Estudiante e : ranking) suma+= e.getPromedio();
+        System.out.println("\n=== ESTADÍSTICAS ===");
+        System.out.println(" Total     : "+ ranking.size());
+        System.out.printf(" Promedio   : %.2f%n", (suma / ranking.size()));
+        System.out.println(" Mejor     : "+ ranking.last());
+        System.out.println(" Peor      : "+ ranking.first());
+    }
+
+    public void mostrarHistorial(){
+        System.out.println("\n=== HISTORIAL DE OPERACIONES ===");
+        if(historial.isEmpty()){
+            System.out.println("No se han realizado operaciones aún.");
+            return;
+        }
+        for(String entrada : historial){
+            System.out.println(" "+ entrada);
+        }
+    }
+    public int getTotalEstudiantes() { return porCarnet.size();
+    }
 }
