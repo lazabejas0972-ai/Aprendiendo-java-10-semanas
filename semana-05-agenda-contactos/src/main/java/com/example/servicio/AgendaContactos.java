@@ -1,45 +1,57 @@
 package com.example.servicio;
 
-import com.example.exception.ContactoExistenteException;
-import com.example.exception.ContactoNoEncontradoException;
+import com.example.exception.*;
 import com.example.modelo.Contacto;
 import com.example.util.ManejadorJSON;
-import java.util.*;
+
+import java.util.ArrayList;
 
 public class AgendaContactos {
-    private Map<String, Contacto> contactos;
+
+    private static final String ARCHIVO = "data/contactos.json";
+    private static final String BACKUP = "data/contactos.backup.json";
+
+    private ArrayList<Contacto> contactos;
 
     public AgendaContactos() {
-        contactos = ManejadorJSON.cargar();
+        contactos = ManejadorJSON.cargar(ARCHIVO);
+        System.out.println("Agenda cargada con " + contactos.size() + " contactos.");
+    }
+
+    private void persistir() {
+        ManejadorJSON.guardarConBackup(contactos, ARCHIVO, BACKUP);
     }
 
     public void agregar(Contacto c) throws ContactoExistenteException {
-        if (contactos.containsKey(c.getId())) {
-            throw new ContactoExistenteException(c.getId());
+        for (Contacto existente : contactos) {
+            if (existente.getId().equals(c.getId())) {
+                throw new ContactoExistenteException(c.getId());
+            }
         }
-        contactos.put(c.getId(), c);
-        ManejadorJSON.guardar(contactos);
+        contactos.add(c);
+        persistir();
     }
 
     public Contacto buscar(String id) throws ContactoNoEncontradoException {
-        Contacto c = contactos.get(id);
-        if( c == null){
-            throw new ContactoNoEncontradoException("No se encontró contacto con id: " + id);
+        for (Contacto c : contactos) {
+            if (c.getId().equals(id)) {
+                return c;
+            }
         }
-        return c;
+        throw new ContactoNoEncontradoException(id);
     }
 
-    public void eliminar (String id) throws ContactoNoEncontradoException{
-        buscar (id);
-        contactos.remove(id);
-        ManejadorJSON.guardar(contactos);
+    public void eliminar(String id) throws ContactoNoEncontradoException {
+        Contacto c = buscar(id);
+        contactos.remove(c);
+        persistir();
     }
 
-    public List<Contacto> listar(){
-        return new ArrayList<>(contactos.values());
+    public ArrayList<Contacto> listarTodos() {
+        return new ArrayList<>(contactos); // copia defensiva
     }
 
-    public int total(){
+    public int total() {
         return contactos.size();
     }
 }
