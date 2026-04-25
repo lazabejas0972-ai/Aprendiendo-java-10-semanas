@@ -55,4 +55,8 @@ public class AgendaContactos {
     public int total() {
         return contactos.size();
     }
+
+    public void guardarCambios() {
+    persistir();
+}
 }
