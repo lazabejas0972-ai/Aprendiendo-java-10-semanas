@@ -1,10 +1,11 @@
 package com.example.servicio;
 
-import com.example.exception.*;
+import java.util.ArrayList;
+
+import com.example.exception.ContactoExistenteException;
+import com.example.exception.ContactoNoEncontradoException;
 import com.example.modelo.Contacto;
 import com.example.util.ManejadorJSON;
-
-import java.util.ArrayList;
 
 public class AgendaContactos {
 
@@ -48,7 +49,7 @@ public class AgendaContactos {
     }
 
     public ArrayList<Contacto> listarTodos() {
-        return new ArrayList<>(contactos); // copia defensiva
+        return new ArrayList<>(contactos); 
     }
 
     public int total() {
