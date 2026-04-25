@@ -1,0 +1,72 @@
+[
+    {
+    "id": "1",
+    "nombre": "Juan Perez",
+    "telefono": "71234567",
+    "email": "juan@gmail.com",
+    "direccion": "Oruro"
+    },
+    {
+    "id": "2",
+    "nombre": "Maria Lopez",
+    "telefono": "76543210",
+    "email": "maria@gmail.com",
+    "direccion": "La Paz"
+    },
+    {
+    "id": "3",
+    "nombre": "Andres Villalta",
+    "telefono": "78231435",
+    "email": "andres@gmail.com",
+    "direccion": "Santa Cruz"
+    },
+    {
+    "id": "4",
+    "nombre": "Jose Jimenez",
+    "telefono": "54129547",
+    "email": "jose@gmail.com",
+    "direccion": "Cochabamba"
+    },
+    {
+    "id": "5",
+    "nombre": "Pedro Jimenez",
+    "telefono": "12478964",
+    "email": "pedro@gmail.com",
+    "direccion": "Tarija"
+    },
+    {
+    "id": "6",
+    "nombre": "Stefani Mamani",
+    "telefono": "82147963",
+    "email": "stefi@gmail.com",
+    "direccion": "Pando"
+    },
+    {
+    "id": "7",
+    "nombre": "Judith Rojas",
+    "telefono": "964712532",
+    "email": "judi@gmail.com",
+    "direccion": "Beni"
+    },
+    {
+    "id": "8",
+    "nombre": "Gabriela Choque",
+    "telefono": "12478954",
+    "email": "gabriela@gmail.com",
+    "direccion": "Sucre"
+    },
+    {
+    "id": "9",
+    "nombre": "Mariela Quino",
+    "telefono": "97485123",
+    "email": "mariela@gmail.com",
+    "direccion": "Potosi"
+    },
+    {
+    "id": "10",
+    "nombre": "Cristiano Ronaldo",
+    "telefono": "78412365",
+    "email": "cristiano@gmail.com",
+    "direccion": "El Alto"
+    }
+]
