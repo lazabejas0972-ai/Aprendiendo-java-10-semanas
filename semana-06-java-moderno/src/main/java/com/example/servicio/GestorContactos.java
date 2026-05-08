@@ -1,44 +1,94 @@
 package com.example.servicio;
 
+import java.util.Comparator;
+import java.util.List;
+import java.util.Optional;
+
 import com.example.modelo.Contacto;
-import com.example.modelo.ContactoDuplicadoException;
-import java.util.*;
-import java.util.stream.*;
+import com.example.util.ManejadorJSON;
 
-public class GestorContactos{
-    private List<Contacto> contactos = new ArrayList<>();
+public class GestorContactos {
 
-    public void agregarContacto (Contacto contacto)throws ContactoDuplicadoException{
-        boolean existe = contactos.stream().anyMatch(c -> c.getNombre().equalsIgnoreCase(contacto.getNombre()));
-        if(existe){
-            throw new ContactoDuplicadoException(" Ya existe: "+contacto.getNombre());
-        }
+    private static final String ARCHIVO =
+            "data/contactos.json";
+
+    private List<Contacto> contactos;
+
+    public GestorContactos() {
+
+        contactos =
+                ManejadorJSON.cargar(ARCHIVO);
+    }
+
+    public void agregarContacto(
+            Contacto contacto
+    ) {
+
         contactos.add(contacto);
+
+        guardar();
     }
 
-    public Optional <Contacto> buscarPorNombre(String nombre){
-        return contactos.stream().filter( c-> c.getNombre().equalsIgnoreCase(nombre)).findFirst();
-    }
+    public List<Contacto> listarTodos() {
 
-    public List <Contacto> filtrarPorCategoria(String cat){
-        return contactos.stream().filter(c -> c.getCategoria().equalsIgnoreCase(cat)).collect(Collectors.toList());
-    }
-
-    public List <String> obtenerNombres(){
-        return contactos.stream().map(Contacto :: getNombre).collect(Collectors.toList());
-    }
-
-    public long contarPorCategoria(String categoria){
-        return contactos.stream().filter(c -> c.getCategoria().equalsIgnoreCase(categoria)).count();
-    }
-
-    public List <Contacto> obtenerTodos(){
         return contactos;
     }
 
-    public List<Contacto> listarOrdenados(){
-    return contactos.stream()
-        .sorted(Comparator.comparing(Contacto::getNombre))
-        .collect(Collectors.toList());
+    public List<Contacto> buscarPorNombre(
+            String fragmento
+    ) {
+
+        return contactos.stream()
+                .filter(c ->
+                        c.getNombre()
+                                .toLowerCase()
+                                .contains(
+                                        fragmento
+                                                .toLowerCase()
+                                )
+                )
+                .toList();
+    }
+
+    public Optional<Contacto> buscarPorId(
+            String id
+    ) {
+
+        return contactos.stream()
+                .filter(c ->
+                        c.getId()
+                                .equalsIgnoreCase(id))
+                .findFirst();
+    }
+
+    public long totalConEmail() {
+
+        return contactos.stream()
+                .filter(c ->
+                        c.getEmail() != null
+                                &&
+                                !c.getEmail()
+                                        .isBlank())
+                .count();
+    }
+
+    public List<Contacto>
+    listarOrdenados() {
+
+        return contactos.stream()
+                .sorted(
+                        Comparator.comparing(
+                                Contacto::getNombre
+                        )
+                )
+                .toList();
+    }
+
+    private void guardar() {
+
+        ManejadorJSON.guardar(
+                contactos,
+                ARCHIVO
+        );
     }
 }
