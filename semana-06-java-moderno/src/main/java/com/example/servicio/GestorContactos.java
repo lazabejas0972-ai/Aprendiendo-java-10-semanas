@@ -1,11 +1,11 @@
 package com.example.servicio;
 
+import com.example.modelo.Contacto;
+import com.example.util.ManejadorJSON;
+
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
-
-import com.example.modelo.Contacto;
-import com.example.util.ManejadorJSON;
 
 public class GestorContactos {
 
@@ -34,6 +34,7 @@ public class GestorContactos {
         return contactos;
     }
 
+    // STREAM FILTER
     public List<Contacto> buscarPorNombre(
             String fragmento
     ) {
@@ -50,6 +51,7 @@ public class GestorContactos {
                 .toList();
     }
 
+    // OPTIONAL
     public Optional<Contacto> buscarPorId(
             String id
     ) {
@@ -61,6 +63,7 @@ public class GestorContactos {
                 .findFirst();
     }
 
+    // COUNT
     public long totalConEmail() {
 
         return contactos.stream()
@@ -72,6 +75,7 @@ public class GestorContactos {
                 .count();
     }
 
+    // SORTED
     public List<Contacto>
     listarOrdenados() {
 
