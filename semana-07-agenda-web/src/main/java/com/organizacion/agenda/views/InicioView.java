@@ -9,7 +9,7 @@ import com.vaadin.flow.router.Route;
 
 @Route("")
 public class InicioView extends VerticalLayout{
-    public InicioView(){
+    public InicioView(){    
         setPadding(true);
         setPadding(true);
 
